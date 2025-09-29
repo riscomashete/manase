@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simataa Senior Secondary School</title>
+  <meta name="description" content="Simataa Senior Secondary School — Empowering students for success through quality secondary education, leadership development, and academic excellence." />
+  <meta name="theme-color" content="#2b8a63" />
+  <style>
+    /* ---------------- Base / Reset ---------------- */
+    :root{
+      --accent:#2b8a63;
+      --accent-2:#1f7a4f;
+      --muted:#6b7276;
+      --bg:blue;
+      --card:#ffffff;
+      --radius:12px;
+      --maxw:1100px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#83a5e4 0,#ffffff 100%);color:black;line-height:1.45;margin: 0;}
+    a{color:var(--accent)}
+    .container{max-width:var(--maxw);margin:0 auto;padding:20px}
+    h1,h2,h3,h4{margin:0 0 10px}
+    p{margin:0 0 10px}
+    .muted{color:var(--muted);font-size:0.95rem}
+
+    /* ------------- Header -------------- */
+    /* ========== Header (fixed & sticky) ========== */
+    header.site-header{
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:1000;
+      background: transparent; /* transparent over hero */
+      transition: background 220ms ease, box-shadow 220ms ease, backdrop-filter 220ms;
+      -webkit-backdrop-filter: blur(6px);
+      backdrop-filter: blur(6px);
+      color: rgb(95, 95, 233);
+    }
+    header.site-header.scrolled{
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 8px 30px rgba(6,18,12,0.08);
+      border-bottom:1px solid rgba(10,40,30,0.04);
+    }
+    .header-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;max-width:var(--maxw);margin:0 auto}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:54px;height:54px;border-radius:10px;display:grid;place-items:center;color:white;font-weight:700;background:linear-gradient(180deg,#83a5e4 0,#ffffff 100%);box-shadow:0 8px 20px rgba(43,138,99,0.12)}
+    nav.main-nav{display:flex;gap:10px;align-items:center}
+    nav.main-nav a{padding:8px 12px;border-radius:8px;text-decoration:none;color:inherit}
+    .btn{background:var(--accent);color:white;padding:8px 12px;border-radius:9px;border:none;cursor:pointer}
+    .btn.ghost{background:transparent;border:1px solid rgba(43,138,99,0.12);color:var(--accent)}
+    .small{font-size:0.92rem;padding:6px 10px}
+
+    /* make sure anchored sections are not hidden under the fixed header */
+    section { scroll-margin-top: calc(var(--header-h) + 12px); }
+
+    
+    nav.main-nav{display:flex;gap:10px;align-items:center;position: sticky;}
+    nav.main-nav a, nav.main-nav button{padding:8px 12px;border-radius:8px;border:none;background:transparent;cursor:pointer;color:inherit}
+    .btn{background:var(--accent);color:white;padding:8px 12px;border-radius:9px;border:none;cursor:pointer}
+    .btn.ghost{background:transparent;border:1px solid rgba(43,138,99,0.12);color:var(--accent)}
+    .small{font-size:0.92rem;padding:6px 10px}
+
+    /* ------------- Hero -------------- */
+    .hero{padding:28px 0}
+    .hero-grid{display:grid;grid-template-columns:1fr 360px;gap:20px;align-items:center}
+    .hero h1{font-size:1.9rem}
+    .tag{color:var(--muted)}
+
+    /* ------------- Sections -------------- */
+    section{padding:24px 0;border-top:1px solid rgba(38, 116, 233, 0.03);}
+    .card{background:var(--card);border-radius:12px;padding:16px;border:1px solid rgba(10,40,30,0.03);box-shadow:0 6px 18px rgba(12,30,18,0.03)}
+    .grid{display:grid;gap:12px}
+    .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+    .grid.resp{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+
+   .hero {
+  background: url("./simataa\ senior\ secondary\ school.bmp") no-repeat center/cover;
+  color: white;
+  text-align: center;
+  padding: 150px 50px;
+  border-radius: 12px;
+  height: 65rem;
+}
+
+    /* ------------- Badges and lists -------------- */
+    .subjects{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:8px 0}
+    .subjects li{background:#eefaf1;padding:8px 12px;border-radius:999px;border:1px solid rgba(43,138,99,0.08);font-weight:600}
+
+    /* ------------- Calendar -------------- */
+    .calendar-wrap{margin-top:12px}
+    .calendar-controls{display:flex;align-items:center;gap:10px}
+    .calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;margin-top:8px}
+    .weekday{font-weight:700;color:var(--muted);padding:8px}
+    .day{min-height:82px;padding:8px;border-radius:10px;background:#fff;border:1px solid #eef7ef;display:flex;flex-direction:column}
+    .date-num{font-weight:700;margin-bottom:6px}
+    .ev{background:#f1fdf6;padding:6px;border-radius:8px;margin-bottom:6px;border:1px solid rgba(43,138,99,0.09);font-size:0.88rem}
+
+    /* ------------- Forms -------------- */
+    form .row{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+    input[type="text"],input[type="email"],input[type="number"],select,textarea{padding:10px;border-radius:8px;border:1px solid #ecf4ef;background:#fbfefb}
+    textarea{resize:vertical}
+    .actions{display:flex;gap:8px;justify-content:flex-end}
+
+    /* ------------- Portals & Dashboard -------------- */
+    .portal-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+    .modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(6,18,12,0.45);z-index:120;padding:18px}
+    .modal[aria-hidden="false"]{display:flex}
+    .modal-card{width:100%;max-width:560px;background:var(--card);padding:16px;border-radius:10px;position:relative}
+    .close-btn{position:absolute;right:12px;top:8px;border:none;background:transparent;font-size:18px;cursor:pointer}
+    .dashboard{display:none;margin-top:12px}
+    .dashboard[aria-hidden="false"]{display:block}
+
+    /* ------------- News & Announcements -------------- */
+    .news-list{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+    .news-item{padding:10px;border-radius:8px;background:#fff;border:1px solid #eef6ef}
+
+    /* ------------- Footer -------------- */
+    footer.site-footer{padding:16px 0;border-top:1px solid rgba(10,40,30,0.03);background:transparent}
+
+    /* ------------- Responsive -------------- */
+    @media (max-width:980px){
+      .hero-grid{grid-template-columns:1fr;gap:14px}
+      nav.main-nav{display:none}
+    }
+    @media (max-width:560px){
+      .header-row{padding:10px}
+      .container{padding:12px}
+    }
+  </style>
+</head>
+<body>
+   <!-- HEADER (fixed) -->
+  <header class="site-header" role="banner">
+    <div class="header-row">
+      <div class="brand">
+        <div class="logo" aria-hidden="true">SSS</div>
+        <div>
+          <div style="font-weight:700">SIMATAA SENIOR SECONDARY</div>
+        </div>
+      </div>
+
+      <nav class="main-nav" role="navigation" aria-label="Main">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#academics">Academics</a>
+        <a href="#admissions">Admissions</a>
+        <a href="#news">News</a>
+        <a href="#calendar">Calendar</a>
+        <a href="#portals">Portals</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO / HOME -->
+    <section id="home" class="container hero" aria-labelledby="homeTitle">
+      <div class="hero-grid">
+        <div>
+          <h1 id="homeTitle">Welcome to Simataa Senior Secondary School</h1>
+          <p class="muted">Established 1972 — named after the late Imataa, serving Grades 8–12 with science & computer labs, committed to academic excellence and leadership development.</p>
+
+          <div class="card" style="margin-top:12px;display:flex;justify-content:space-between;align-items:center;gap:12px">
+            <div>
+              <strong>Mission</strong>
+              <p class="muted" style="margin-top:6px">To empower learners with academic foundations, practical skills and leadership for lifelong success.</p>
+            </div>
+            <div style="text-align:right">
+              <div><strong>Students:</strong> 460</div>
+              <div class="muted">Chinchimane — ≈70 km from Katima Mulilo</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <a href="#admissions" class="btn">Admissions</a>
+            <a href="#news" class="btn btn ghost">Latest news</a>
+            <button id="jumpCalendar" class="btn small">Open Calendar</button>
+          </div>
+        </div>
+
+        <aside class="card">
+          <h3>Quick Links</h3>
+          <ul style="margin-top:8px" class="muted">
+            <li><a href="#admissions">Apply / Admissions</a></li>
+            <li><a href="#portals">Student & Parent portals</a></li>
+            <li><a href="#contact">Contact & Map</a></li>
+            <li><a href="#news">News & Announcements</a></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="container" aria-labelledby="aboutTitle">
+      <h2 id="aboutTitle">About Us</h2>
+      <p class="muted">Simataa Senior Secondary School was established in 1972 and named after the late Imataa, the first chief of the Mafwe tribe. The school serves learners from Grades 8 to 12 and supports academic and life skills programs.</p>
+
+      <div class="grid resp" style="margin-top:12px">
+        <div class="card">
+          <h3>Principal's Message</h3>
+          <p class="muted">Welcome to Simataa. Our commitment is to provide quality teaching and a supportive environment where every student can flourish academically and socially.</p>
+        </div>
+
+        <div class="card">
+          <h3>History & Vision</h3>
+          <p class="muted">Founded to bring secondary education to the local community. Vision: A leading rural school known for high standards and community impact.</p>
+        </div>
+
+        <div class="card">
+          <h3>Staff Directory</h3>
+          <ul class="muted" style="margin-top:8px">
+            <li>Principal: Mr Mukena B</li>
+            <li>HOD: Mr Chainda</li>
+            <li>Life Skills: Ms Kambonja</li>
+            <li>English: Me Pembe</li>
+            <li>Ms Bella</li>
+            <li>Mr Mulonga</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ACADEMICS -->
+    <section id="academics" class="container section" aria-labelledby="academicsTitle">
+      <h2 id="academicsTitle">Academic Information</h2>
+      <p class="muted">Curriculum overview and subjects offered for Grades 8–12.</p>
+
+      <div class="card" style="margin-top:12px">
+        <h3>Subjects & Curriculum</h3>
+        <ul class="subjects" aria-hidden="false">
+          <li>English</li>
+          <li>Silozi</li>
+          <li>Mathematics</li>
+          <li>Physics</li>
+          <li>Chemistry</li>
+          <li>Agriculture</li>
+          <li>History</li>
+          <li>Geography</li>
+        </ul>
+
+        <div style="margin-top:8px" class="grid cols-3 resp">
+          <div class="card">
+            <h4>Assessment</h4>
+            <p class="muted">Continuous assessment, end-of-term exams and practical assessments for science & agriculture.</p>
+          </div>
+          <div class="card">
+            <h4>Support</h4>
+            <p class="muted">Remedial classes and peer tutoring available for students who need extra help.</p>
+          </div>
+          <div class="card">
+            <h4>ICT</h4>
+            <p class="muted">Computer lab supports ICT literacy and research projects.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ADMISSIONS -->
+    <section id="admissions" class="container" aria-labelledby="admitTitle">
+      <h2 id="admitTitle">Admissions</h2>
+      <p class="muted">Follow the steps below to apply.</p>
+
+      <div class="grid resp" style="margin-top:12px">
+        <div class="card">
+          <h3>Enrollment Procedures</h3>
+          <ol class="muted">
+            <li>Complete the online application form below.</li>
+            <li>Attach certified copy of previous school report (upload placeholder).</li>
+            <li>Attend interview (date will be communicated).</li>
+            <li>Receive admission confirmation and pay fees (if required).</li>
+          </ol>
+        </div>
+
+        <div class="card">
+          <h3>Admission Requirements & Deadlines</h3>
+          <p class="muted"><strong>Requirements:</strong> Copy of ID / Birth certificate, prior school report, 2 passport photos. <br><strong>Deadlines:</strong> Applications open Jan 15 — Feb 28</p>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <h3>Application Form</h3>
+        <form id="admissionForm">
+          <div class="row">
+            <div class="row">
+              <label>Full name<input type="text" id="app_name" required></label>
+            </div>
+            <div class="row">
+              <label>Applicant DOB<input type="text" id="app_dob" placeholder="YYYY-MM-DD" required></label>
+            </div>
+            <div class="row">
+              <label>Applying for grade
+                <select id="app_grade" required>
+                  <option value="">Select grade</option>
+                  <option>Grade 8</option><option>Grade 9</option><option>Grade 10</option><option>Grade 11</option><option>Grade 12</option>
+                </select>
+              </label>
+            </div>
+            <div class="row">
+              <label>Parent / Guardian name<input type="text" id="app_parent" required></label>
+            </div>
+            <div class="row">
+              <label>Contact phone<input type="text" id="app_phone" required></label>
+            </div>
+            <div class="row">
+              <label>Previous school<input type="text" id="app_prev"></label>
+            </div>
+            <div class="actions" style="margin-top:10px">
+              <button class="btn" type="submit">Submit application</button>
+              <button type="button" id="viewApps" class="btn ghost">View saved applications</button>
+            </div>
+          </div>
+        </form>
+
+        <div id="applicationsList" style="margin-top:12px;display:none">
+          <h4>Saved Applications</h4>
+          <ul id="appsUL" class="muted"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWS & ANNOUNCEMENTS -->
+    <section id="news" class="container" aria-labelledby="newsTitle">
+      <h2 id="newsTitle">News & Announcements</h2>
+      <p class="muted">School updates and important notices. Add, edit or delete items.</p>
+
+      <div class="grid resp" style="margin-top:12px">
+        <div class="card">
+          <h3>Post an Announcement</h3>
+          <form id="newsForm">
+            <div class="row"><label>Title<input id="newsTitle" required></label></div>
+            <div class="row"><label>Content<textarea id="newsContent" rows="3" required></textarea></label></div>
+            <div class="actions"><button class="btn" type="submit">Add announcement</button></div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>Latest Announcements</h3>
+          <ul id="newsList" class="news-list muted" style="margin-top:8px"></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CALENDAR -->
+    <section id="calendar" class="container" aria-labelledby="calTitle">
+      <h2 id="calTitle">Academic Calendar</h2>
+      <p class="muted">Click any day to add an event. Events are stored in your browser.</p>
+
+      <div class="card calendar-wrap">
+        <div class="calendar-controls">
+          <button id="prevM">‹</button>
+          <div id="calTitleText" style="flex:1;text-align:center;font-weight:700"></div>
+          <button id="nextM">›</button>
+        </div>
+
+        <div id="calGrid" class="calendar-grid" style="margin-top:8px"></div>
+        <div style="margin-top:8px" class="muted"><span style="display:inline-block;width:12px;height:12px;background:var(--accent);border-radius:50%;margin-right:6px;vertical-align:middle"></span>School event &nbsp;&nbsp; <span style="display:inline-block;width:12px;height:12px;background:#1565c0;border-radius:50%;margin-right:6px;vertical-align:middle"></span>Your event</div>
+      </div>
+    </section>
+
+    <!-- PORTALS -->
+    <section id="portals" class="container" aria-labelledby="portalTitle">
+      <h2 id="portalTitle">Student & Parent Portals</h2>
+
+      <div class="portal-grid" style="margin-top:12px">
+        <div class="card">
+          <h3>Student Portal</h3>
+          <p class="muted">Timetables, homework, exam schedule.</p>
+          <div style="margin-top:8px">
+            <button id="studentBtn" class="btn">Open Student Login</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Parent Portal</h3>
+          <p class="muted">Fee receipts, messages, and communication.</p>
+          <div style="margin-top:8px">
+            <button id="parentBtn" class="btn ghost">Open Parent Login</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STUDENT MODAL -->
+      <div id="studentModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="studentLoginTitle">
+        <div class="modal-card">
+          <button class="close-btn" data-close>✕</button>
+          <h3 id="studentLoginTitle">Student Login</h3>
+          <form id="studentForm">
+            <div class="row"><label>Student ID<input id="stuId" required></label></div>
+            <div class="row"><label>Password<input id="stuPass" type="password" required></label></div>
+            <div class="actions"><button class="btn" type="submit">Sign in</button></div>
+          </form>
+        </div>
+      </div>
+
+      <!-- PARENT MODAL -->
+      <div id="parentModal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="parentLoginTitle">
+        <div class="modal-card">
+          <button class="close-btn" data-close>✕</button>
+          <h3 id="parentLoginTitle">Parent Login</h3>
+          <form id="parentForm">
+            <div class="row"><label>Parent Email<input id="parEmail" type="email" required></label></div>
+            <div class="row"><label>Password<input id="parPass" type="password" required></label></div>
+            <div class="actions"><button class="btn" type="submit">Sign in</button></div>
+          </form>
+        </div>
+      </div>
+
+      <!-- STUDENT DASHBOARD (demo) -->
+      <div id="studentDash" class="dashboard card" aria-hidden="true">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3>Student Dashboard</h3>
+          <div><button id="stuLogout" class="btn ghost small">Logout</button></div>
+        </div>
+        <div style="margin-top:8px" class="grid resp">
+          <div class="card">
+            <h4>Today's Timetable</h4>
+            <ul id="stuTimetable" class="muted" style="margin-top:8px"></ul>
+          </div>
+          <div class="card">
+            <h4>Homework</h4>
+            <ul id="stuHomework" class="muted" style="margin-top:8px"></ul>
+          </div>
+          <div class="card">
+            <h4>Exam Schedule</h4>
+            <ul id="stuExams" class="muted" style="margin-top:8px"></ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- PARENT DASHBOARD (demo) -->
+      <div id="parentDash" class="dashboard card" aria-hidden="true" style="margin-top:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <h3>Parent Dashboard</h3>
+          <div><button id="parLogout" class="btn ghost small">Logout</button></div>
+        </div>
+        <div style="margin-top:8px" class="grid resp">
+          <div class="card">
+            <h4>Messages</h4>
+            <ul id="parMessages" class="muted" style="margin-top:8px"></ul>
+          </div>
+          <div class="card">
+            <h4>Fees & Receipts</h4>
+            <div id="feeArea" style="margin-top:8px" class="muted">
+              <p>No payments yet. Use the button below to create a mock receipt.</p>
+              <div class="actions"><button id="payFee" class="btn small">Generate mock receipt</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="container" aria-labelledby="contactTitle">
+      <h2 id="contactTitle">Contact</h2>
+      <div class="grid resp" style="margin-top:12px">
+        <div class="card">
+          <h3>Contact Details</h3>
+          <p class="muted"><strong>Address:</strong> Chinchimane, Zambezi Region, Namibia<br>
+          <strong>Phone:</strong> +264 81 000 0000 <br>
+          <strong>Email:</strong> info@simataa.edu.na</p>
+          <p class="muted">Find us on social media:</p>
+          <div style="display:flex;gap:8px">
+            <a href="#" title="Facebook" class="btn ghost small">Facebook</a>
+            <a href="#" title="Twitter" class="btn ghost small">Twitter</a>
+            <a href="#" title="Instagram" class="btn ghost small">Instagram</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Send us a message</h3>
+          <form id="contactForm">
+            <div class="row"><label>Your name<input id="c_name" required></label></div>
+            <div class="row"><label>Your email<input id="c_email" type="email" required></label></div>
+            <div class="row"><label>Message<textarea id="c_msg" rows="4" required></textarea></label></div>
+            <div class="actions"><button class="btn" type="submit">Send message</button></div>
+          </form>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <h3>Map & Directions</h3>
+        <p class="muted">Embedded map.</p>
+        <!-- Placeholder map iframe; you can replace coordinates with the school's real location -->
+        <iframe title="Map placeholder" src="https://maps.google.com/maps?q=Chinchimane%20Namibia&t=&z=10&ie=UTF8&iwloc=&output=embed" style="width:100%;height:300px;border:0;border-radius:8px"></iframe>
+      </div>
+    </section>
+
+    <!-- SOCIAL MEDIA FEEDS (PLACEHOLDERS) -->
+    <section class="container" aria-labelledby="socialTitle">
+      <h2 id="socialTitle">Social Media & Feeds</h2>
+      <p class="muted">Links and embedded previews.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px;margin-top:12px">
+        <div class="card"><h4>Facebook</h4><div class="muted">Facebook feed placeholder.</div></div>
+        <div class="card"><h4>Twitter</h4><div class="muted">Twitter timeline placeholder</div></div>
+        <div class="card"><h4>Instagram</h4><div class="muted">Instagram placeholder</div></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  
+  <footer class="site-footer">
+  <div class="container" style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+      <div>Simataa Senior Secondary School © <span id="year"></span> | All rights reserved | by <a href="https://www.riscomashete.com">Risco Mashete</a></div>
+    </div>
+  </footer>
+
+  <!-- ======= Script: interactive behavior (all client-side demo) ======= -->
+  <script>
+    (function(){
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      /* ----------------- Utilities ----------------- */
+      function $(id){ return document.getElementById(id); }
+      function save(key,val){ localStorage.setItem(key, JSON.stringify(val)); }
+      function load(key){ try { return JSON.parse(localStorage.getItem(key) || 'null'); } catch(e){ return null } }
+
+      /* ----------------- Admissions form ----------------- */
+      const admissionForm = $('admissionForm');
+      const appsUL = $('appsUL');
+      const applicationsList = $('applicationsList');
+      admissionForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        const app = {
+          id: 'APP-' + Date.now(),
+          name: $('app_name').value.trim(),
+          dob: $('app_dob').value.trim(),
+          grade: $('app_grade').value,
+          parent: $('app_parent').value.trim(),
+          phone: $('app_phone').value.trim(),
+          prev: $('app_prev').value.trim(),
+          submittedAt: new Date().toISOString()
+        };
+        const existing = load('simataa_applications') || [];
+        existing.push(app);
+        save('simataa_applications', existing);
+        alert('Application saved (demo).');
+        admissionForm.reset();
+      });
+      $('viewApps').addEventListener('click', function(){
+        const existing = load('simataa_applications') || [];
+        if(!existing.length){ alert('No applications yet'); return; }
+        applicationsList.style.display = 'block';
+        appsUL.innerHTML = existing.map(a=> `<li><strong>${a.name}</strong> — ${a.grade} — ${a.phone} <br><small class="muted">Submitted: ${new Date(a.submittedAt).toLocaleString()}</small></li>`).join('');
+      });
+
+      /* ----------------- News & Announcements ----------------- */
+      const newsForm = $('newsForm');
+      const newsList = $('newsList');
+      function renderNews(){
+        const items = load('simataa_news') || [];
+        if(!items.length) { newsList.innerHTML = '<li class="muted">No announcements yet</li>'; return; }
+        newsList.innerHTML = items.map((n, idx) => `
+          <li class="news-item">
+            <strong>${n.title}</strong>
+            <div style="margin-top:6px">${n.content}</div>
+            <div style="margin-top:8px;display:flex;gap:8px;justify-content:flex-end">
+              <button data-edit="${idx}" class="btn small">Edit</button>
+              <button data-del="${idx}" class="btn ghost small">Delete</button>
+            </div>
+          </li>
+        `).join('');
+        // attach handlers
+        Array.from(newsList.querySelectorAll('[data-del]')).forEach(b=> b.addEventListener('click', (e)=>{
+          const idx = +e.target.getAttribute('data-del');
+          const items = load('simataa_news') || [];
+          items.splice(idx,1); save('simataa_news', items); renderNews();
+        }));
+        Array.from(newsList.querySelectorAll('[data-edit]')).forEach(b=> b.addEventListener('click', (e)=>{
+          const idx = +e.target.getAttribute('data-edit');
+          const items = load('simataa_news') || [];
+          const n = items[idx];
+          const newTitle = prompt('Edit title', n.title);
+          if(newTitle===null) return;
+          const newContent = prompt('Edit content', n.content);
+          if(newContent===null) return;
+          n.title = newTitle; n.content = newContent;
+          save('simataa_news', items); renderNews();
+        }));
+      }
+      newsForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        const items = load('simataa_news') || [];
+        items.unshift({title: $('newsTitle').value.trim(), content: $('newsContent').value.trim(), date: new Date().toISOString()});
+        save('simataa_news', items);
+        newsForm.reset(); renderNews();
+      });
+      renderNews();
+
+      /* ----------------- Calendar ----------------- */
+      const calGrid = $('calGrid');
+      const calTitleText = $('calTitleText');
+      const prevM = $('prevM'), nextM = $('nextM');
+      let current = new Date(); current.setDate(1);
+      function loadEvents(){ return load('simataa_events') || []; }
+      function saveEvents(e){ save('simataa_events', e); }
+      // seed if empty
+      if(!(load('simataa_events') || []).length){
+        const now = new Date(), pad=n=>String(n).padStart(2,'0');
+        const today = now.getFullYear()+'-'+pad(now.getMonth()+1)+'-'+pad(now.getDate());
+        const plus3 = new Date(now); plus3.setDate(now.getDate()+3);
+        const p3 = plus3.getFullYear()+'-'+pad(plus3.getMonth()+1)+'-'+pad(plus3.getDate());
+        saveEvents([{date:today,title:'Term starts'},{date:p3,title:'Parent meeting'}]);
+      }
+      function fmt(d){ return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'); }
+      function renderCal(){
+        calGrid.innerHTML=''; calTitleText.textContent = current.toLocaleString(undefined,{month:'long',year:'numeric'});
+        const week = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+        week.forEach(w=>{ const e=document.createElement('div'); e.className='weekday'; e.textContent=w; calGrid.appendChild(e); });
+        const firstDay = new Date(current.getFullYear(),current.getMonth(),1).getDay();
+        const daysInMonth = new Date(current.getFullYear(),current.getMonth()+1,0).getDate();
+        for(let i=0;i<firstDay;i++){ const b=document.createElement('div'); b.className='day'; b.style.opacity='0'; calGrid.appendChild(b); }
+        const events = loadEvents();
+        for(let d=1; d<=daysInMonth; d++){
+          const date = new Date(current.getFullYear(),current.getMonth(),d); const dateStr = fmt(date);
+          const cell = document.createElement('div'); cell.className='day'; const dn=document.createElement('div'); dn.className='date-num'; dn.textContent = d; cell.appendChild(dn);
+          events.filter(ev=>ev.date===dateStr).forEach(ev=>{ const evel=document.createElement('div'); evel.className='ev'; evel.textContent = ev.title; cell.appendChild(evel); });
+          cell.addEventListener('click', ()=> {
+            const title = prompt('Add event for '+dateStr);
+            if(title){ events.push({date:dateStr,title:title}); saveEvents(events); renderCal(); }
+          });
+          calGrid.appendChild(cell);
+        }
+      }
+      prevM.addEventListener('click', ()=>{ current.setMonth(current.getMonth()-1); renderCal(); });
+      nextM.addEventListener('click', ()=>{ current.setMonth(current.getMonth()+1); renderCal(); });
+      renderCal();
+
+      /* ----------------- Student Portal (demo) ----------------- */
+      const studentBtn = $('studentBtn'), studentModal = $('studentModal'), studentForm = $('studentForm'), studentDash = $('studentDash');
+      function openModal(el){ el.setAttribute('aria-hidden','false'); el.style.display='flex'; document.body.style.overflow='hidden'; }
+      function closeModal(el){ el.setAttribute('aria-hidden','true'); el.style.display='none'; document.body.style.overflow=''; }
+      document.querySelectorAll('[data-close]').forEach(b=> b.addEventListener('click', (e)=>{ const m = e.target.closest('.modal'); if(m) closeModal(m); }));
+      studentBtn.addEventListener('click', ()=> openModal(studentModal));
+      $('openStudentBtn')?.addEventListener('click', ()=> openModal(studentModal));
+      $('openParentBtn')?.addEventListener('click', ()=> openModal($('parentModal')));
+      $('jumpCalendar').addEventListener('click', ()=> { location.hash='#calendar'; document.querySelector('#calendar').scrollIntoView({behavior:'smooth'}); });
+
+      studentForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        const id = $('stuId').value.trim(); if(!id) return alert('Enter ID');
+        const demo = {
+          id:id,
+          timetable:[{time:'08:00',subj:'Mathematics'},{time:'09:00',subj:'English'},{time:'10:30',subj:'Physics'}],
+          homework:[{title:'Math worksheet',due: new Date(new Date().setDate(new Date().getDate()+4)).toISOString()}],
+          exams:[{title:'Term exam - Maths',date:new Date(new Date().setDate(new Date().getDate()+21)).toISOString()}]
+        };
+        save('simataa_student_'+id, demo);
+        closeModal(studentModal); showStudent(demo);
+      });
+
+      function showStudent(demo){
+        $('stuTimetable').innerHTML = demo.timetable.map(t=>`<li><strong>${t.time}</strong> — ${t.subj}</li>`).join('');
+        $('stuHomework').innerHTML = demo.homework.map(h=>`<li>${h.title} — due ${new Date(h.due).toLocaleDateString()}</li>`).join('');
+        $('stuExams').innerHTML = demo.exams.map(x=>`<li>${x.title} — ${new Date(x.date).toLocaleDateString()}</li>`).join('');
+        studentDash.setAttribute('aria-hidden','false'); studentDash.style.display='block';
+        parentDash.setAttribute('aria-hidden','true'); parentDash.style.display='none';
+        location.hash = '#portals';
+      }
+      $('stuLogout').addEventListener('click', function(){ studentDash.setAttribute('aria-hidden','true'); studentDash.style.display='none'; });
+
+      /* ----------------- Parent Portal (demo) ----------------- */
+      const parentBtn = $('parentBtn'), parentModal = $('parentModal'), parentForm = $('parentForm'), parentDash = $('parentDash');
+      parentBtn.addEventListener('click', ()=> openModal(parentModal));
+      parentForm.addEventListener('submit', function(e){
+        e.preventDefault();
+        const email = $('parEmail').value.trim(); if(!email) return alert('Enter email');
+        const demoParent = { email: email, messages: [{from:'Principal',text:'Welcome to term 2', date: new Date().toISOString()}], receipts: [] };
+        save('simataa_parent_'+email, demoParent);
+        closeModal(parentModal); showParent(demoParent);
+      });
+      function showParent(demo){
+        $('parMessages').innerHTML = demo.messages.map(m=>`<li><strong>${m.from}:</strong> ${m.text} <br><small class="muted">${new Date(m.date).toLocaleString()}</small></li>`).join('');
+        parentDash.setAttribute('aria-hidden','false'); parentDash.style.display='block';
+        studentDash.setAttribute('aria-hidden','true'); studentDash.style.display='none';
+        location.hash = '#portals';
+      }
+      $('parLogout').addEventListener('click', function(){ parentDash.setAttribute('aria-hidden','true'); parentDash.style.display='none'; });
+
+      /* mock fee payment -> generate receipt */
+      $('payFee').addEventListener('click', function(){
+        const receipt = {id:'R-'+Date.now(),amount:'N$500',date:new Date().toISOString()};
+        const stored = load('simataa_receipts')||[]; stored.push(receipt); save('simataa_receipts',stored);
+        alert('Mock receipt generated: '+receipt.id);
+      });
+
+      /* ----------------- Contact form (demo) ----------------- */
+      $('contactForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        const msg = {name:$('c_name').value,email:$('c_email').value, message:$('c_msg').value, date: new Date().toISOString()};
+        const stored = load('simataa_messages')||[]; stored.push(msg); save('simataa_messages',stored);
+        alert('Message saved (demo).');
+        this.reset();
+      });
+
+      /* ----------------- Simple map in iframe already present ----------------- */
+
+      /* ----------------- Load existing receipts/messages if any on page load (demo) ----------------- */
+      (function initFromStorage(){
+        // if parent demo exists, show first one
+        const receipts = load('simataa_receipts') || [];
+        if(receipts.length){
+          // optionally do something with receipts (demo)
+          // console.log('receipts:', receipts);
+        }
+      })();
+
+      /* ----------------- Accessibility: close modals on Esc ----------------- */
+      document.addEventListener('keydown', function(e){
+        if(e.key === 'Escape'){
+          document.querySelectorAll('.modal[aria-hidden="false"]').forEach(m=> { m.setAttribute('aria-hidden','true'); m.style.display='none'; document.body.style.overflow=''; });
+        }
+      });
+
+      /* ----------------- Basic UI hookups: open/close modals by buttons -------------- */
+      // clicking outside modal closes it
+      document.querySelectorAll('.modal').forEach(mod=>{
+        mod.addEventListener('click', function(ev){
+          if(ev.target === mod){ mod.setAttribute('aria-hidden','true'); mod.style.display='none'; document.body.style.overflow=''; }
+        });
+      });
+      // student open/close buttons
+      $('openStudentBtn') && $('openStudentBtn').addEventListener('click', ()=> openModal($('studentModal')));
+      $('openParentBtn') && $('openParentBtn').addEventListener('click', ()=> openModal($('parentModal')));
+      $('studentBtn') && $('studentBtn').addEventListener('click', ()=> openModal($('studentModal')));
+      $('parentBtn') && $('parentBtn').addEventListener('click', ()=> openModal($('parentModal')));
+
+    })();
+  </script>
+</body>
+</html>
