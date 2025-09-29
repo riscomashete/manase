@@ -32,11 +32,11 @@
       position:fixed;
       top:0; left:0; right:0;
       z-index:1000;
-      background: transparent; /* transparent over hero */
+      background: white; /* transparent over hero */
       transition: background 220ms ease, box-shadow 220ms ease, backdrop-filter 220ms;
       -webkit-backdrop-filter: blur(6px);
       backdrop-filter: blur(6px);
-      color: rgb(95, 95, 233);
+      color: black;
     }
     header.site-header.scrolled{
       background: rgba(255,255,255,0.95);
@@ -45,7 +45,7 @@
     }
     .header-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 20px;max-width:var(--maxw);margin:0 auto}
     .brand{display:flex;gap:12px;align-items:center}
-    .logo{width:54px;height:54px;border-radius:10px;display:grid;place-items:center;color:white;font-weight:700;background:linear-gradient(180deg,#83a5e4 0,#ffffff 100%);box-shadow:0 8px 20px rgba(43,138,99,0.12)}
+    .logo{width:54px;height:54px;border-radius:10px;display:grid;place-items:center;color:white;font-weight:700;background:#83a5e4;box-shadow:0 8px 20px rgba(43,138,99,0.12)}
     nav.main-nav{display:flex;gap:10px;align-items:center}
     nav.main-nav a{padding:8px 12px;border-radius:8px;text-decoration:none;color:inherit}
     .btn{background:var(--accent);color:white;padding:8px 12px;border-radius:9px;border:none;cursor:pointer}
